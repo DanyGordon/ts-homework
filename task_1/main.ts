@@ -41,10 +41,8 @@ function createPostNode(post: Post): Node {
   subTitle.innerHTML = `Post ${post.id} created by user ${post.userId}`
   const body = document.createElement('p');
   body.innerHTML = post.body;
-  header.append(title);
-  header.append(subTitle);
-  node.append(header);
-  node.append(body);
+  header.append(title, subTitle);
+  node.append(header, body);
   return node;
 }
 
