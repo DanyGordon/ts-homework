@@ -1,7 +1,7 @@
 function updateObjectInArray<ObjectShape>(initialArray: Array<ObjectShape>, keyToFind: string, keyValueToFind: string | number, patch: Partial<ObjectShape>): Array<ObjectShape> {
   const indx = initialArray.findIndex(item => item[keyToFind] === keyValueToFind);
   const newArray = initialArray.map(item => deepCopy<ObjectShape>(item));
-  if(indx) {
+  if(indx || indx === 0) {
     newArray[indx] = { ...newArray[indx], ...patch };
   }
   return newArray;
