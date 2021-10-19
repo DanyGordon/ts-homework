@@ -9,12 +9,21 @@ const url = 'https://jsonplaceholder.typicode.com/posts';
 
 async function renderPosts() {
   const posts = await get<Post[]>(url);
-  posts.forEach(post => appendPost(post));
+  if(posts && posts.length) {
+    posts.forEach(post => appendPost(post));
+  } else {
+    alert('Error!');
+  }
 }
 
 async function get<T>(url: string): Promise<T> {
-  const res = await fetch(url);
-  return res.json() as Promise<T>;
+  try {
+    const res = await fetch(url);
+    return res.json() as Promise<T>;
+  } catch(e) {
+    console.log(e);
+    return null;
+  }
 }
 
 function appendPost(post: Post): void {
